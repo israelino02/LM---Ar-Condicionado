@@ -105,25 +105,21 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 main{padding-top:var(--header-h)}
 
 /* ---------- topo ---------- */
-.hero{background:var(--navy-900);color:#C3D7E8;padding:26px 0 34px;position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(255,255,255,.1)}
-.hero h1{color:#fff;margin-bottom:.5em}
-.hero-sub{font-size:.98rem;color:#AFC6DA;max-width:52ch;margin-bottom:20px}
-.hero-actions{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.hero{position:relative;background:var(--navy-900);color:#C3D7E8;overflow:hidden;padding:30px 0 0}
+.hero h1{color:#fff;margin-bottom:.55em}
+.hero-inner{position:relative;z-index:2}
+.hero-copy{padding-bottom:32px}
+.hero-sub{font-size:.98rem;color:#AFC6DA;max-width:54ch;margin-bottom:22px}
+.hero-actions{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
 .hero-actions .btn{width:100%}
-.rating{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1px solid rgba(255,255,255,.16);border-radius:var(--r);background:rgba(255,255,255,.05);max-width:400px}
+.rating{display:flex;align-items:center;gap:11px;padding:12px 14px;border:1px solid rgba(255,255,255,.18);border-radius:8px;max-width:400px}
 .rating-score{font-size:1.4rem;font-weight:800;color:#fff;line-height:1}
 .stars{display:flex;gap:2px}
 .stars svg{width:15px;height:15px;fill:var(--star)}
 .rating-text{font-size:.8rem;color:#A9C1D6;line-height:1.3}
 .rating-text strong{color:#fff}
-
-.hero-art{position:relative;margin-top:26px}
-.hero-art-main{margin:0;border-radius:var(--r);overflow:hidden;position:relative;z-index:2;border:1px solid rgba(255,255,255,.14)}
-.hero-art-main img{width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center 42%}
-.hero-art-side{position:absolute;right:-4px;bottom:-18px;width:40%;max-width:190px;margin:0;z-index:3;border-radius:var(--r);overflow:hidden;border:3px solid var(--navy-900)}
-.hero-art-side img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 30%}
-.hero-art-frame{display:none}
+.hero-photo{margin:0;position:relative;border-top:1px solid rgba(255,255,255,.12)}
+.hero-photo img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:center 46%}
 
 /* ---------- faixa de confiança ---------- */
 .trust{background:#fff;border-bottom:1px solid var(--line)}
@@ -228,13 +224,10 @@ main{padding-top:var(--header-h)}
   body{font-size:17px}
   .section{padding:62px 0}
   .wrap{padding:0 24px}
-  .hero{padding:44px 0 52px}
+  .hero{padding:46px 0 0}
+  .hero-copy{padding-bottom:44px}
   .hero-actions{flex-direction:row;flex-wrap:wrap}
   .hero-actions .btn{width:auto;min-width:220px}
-  .hero-sub{font-size:1.05rem}
-  .rating{padding:13px 16px}
-  .rating-score{font-size:1.55rem}
-  .rating-text{font-size:.88rem}
   .trust-grid{grid-template-columns:repeat(4,1fr)}
   .trust-item{border-bottom:0;padding:20px 16px;font-size:.88rem}
   .trust-item:nth-child(odd){border-right:0}
@@ -274,15 +267,22 @@ main{padding-top:var(--header-h)}
   .header-phone span{display:inline}
   .header-cta{display:inline-flex}
   .menu-btn{display:none}
-  .nav{display:flex;align-items:center;gap:18px;margin:0 18px 0 26px}
+  .header-bar{justify-content:center;gap:12px}
+  .brand{margin-right:0}
+  .nav{display:flex;align-items:center;gap:17px;margin:0 6px 0 14px}
   .nav a{color:var(--ink);font-weight:600;font-size:.88rem;white-space:nowrap}
   .nav a:hover{color:var(--accent-dark)}
-  .hero{padding:66px 0 74px}
-  .hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center}
-  .hero-art{margin-top:0;padding:0 34px 34px 0}
-  .hero-art-main img{aspect-ratio:4/5}
-  .hero-art-side{width:52%;max-width:230px;right:0;bottom:0}
-  .hero-art-frame{display:block;position:absolute;right:14px;top:26px;bottom:54px;left:64px;border:2px solid var(--accent);border-radius:var(--r);z-index:1}
+  .hero{padding:0}
+  .hero h1{font-size:clamp(2rem,3.1vw,2.7rem)}
+  .hero-inner{display:flex;align-items:center;min-height:530px}
+  .hero-copy{width:56%;padding:76px 0}
+  .hero-sub{font-size:1.05rem}
+  .rating{padding:13px 16px}
+  .rating-score{font-size:1.55rem}
+  .rating-text{font-size:.88rem}
+  .hero-photo{position:absolute;top:0;right:0;bottom:0;width:44%;border-top:0;z-index:1}
+  .hero-photo::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,var(--navy-900) 0%,rgba(6,22,38,.62) 24%,rgba(6,22,38,0) 62%)}
+  .hero-photo img{height:100%;aspect-ratio:auto;object-position:center 50%}
   .area-grid{grid-template-columns:.85fr 1.15fr;align-items:center;margin-top:26px}
   .empresas-grid{grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
   .float-wa{display:none}
@@ -341,10 +341,10 @@ main{padding-top:var(--header-h)}
 
 <!-- ============ TOPO ============ -->
 <section class="hero" id="inicio">
-  <div class="wrap hero-grid">
-    <div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
       <h1>Instalação, manutenção e higienização de ar-condicionado em Saquarema e Araruama e Região</h1>
-      <p class="hero-sub">Equipe própria, mais de 7 anos de rua na Região dos Lagos. Manda uma foto do ambiente no WhatsApp que a gente avalia e passa o orçamento no mesmo dia.</p>
+      <p class="hero-sub">Empresa de climatização com equipe própria, mais de 7 anos atendendo casa, comércio, condomínio e empresa em Saquarema, Araruama e municípios vizinhos da Região dos Lagos.</p>
 
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://wa.me/5522999297477?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento%20de%20ar-condicionado." target="_blank" rel="noopener">
@@ -369,17 +369,11 @@ main{padding-top:var(--header-h)}
         <span class="rating-text"><strong>161 avaliações</strong><br>nota 5,0 no Google</span>
       </div>
     </div>
-
-    <div class="hero-art">
-      <div class="hero-art-frame" aria-hidden="true"></div>
-      <figure class="hero-art-main">
-        <img src="assets/fotos/hero-carro-lm.jpg" width="507" height="1100" alt="Carro da LM Ar Condicionado com escada no rack, estacionado em rua de Saquarema" fetchpriority="high">
-      </figure>
-      <figure class="hero-art-side">
-        <img src="assets/fotos/hero-equipe-lm.jpg" width="323" height="700" alt="Técnico da LM Ar Condicionado com aparelhos de ar-condicionado novos antes da instalação" loading="lazy">
-      </figure>
-    </div>
   </div>
+
+  <figure class="hero-photo">
+    <img src="assets/fotos/hero-carro-lm.jpg" width="507" height="1100" alt="Carro da LM Ar Condicionado com escada no rack, estacionado em rua de Saquarema" fetchpriority="high">
+  </figure>
 </section>
 
 <!-- ============ FAIXA DE CONFIANÇA ============ -->
@@ -525,7 +519,7 @@ main{padding-top:var(--header-h)}
             <li>Urgência para cliente com contrato</li>
             <li>Ar central e VRF</li>
           </ul>
-          <a class="btn btn-primary btn-sm btn-block" href="#empresas">Ver contrato</a>
+          <a class="btn btn-primary btn-sm btn-block" href="https://wa.me/5522999297477?text=Ol%C3%A1!%20Quero%20falar%20sobre%20contrato%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20empresa." target="_blank" rel="noopener">Pedir orçamento</a>
         </div>
       </article>
 
