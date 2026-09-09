@@ -8,12 +8,48 @@ Repositório: https://github.com/israelino02/LM---Ar-Condicionado (a Vercel publ
 
 ## Arquivos
 
-- `index.html` : o site inteiro, com todo o CSS e o JS dentro
+- `index.html` : a página principal
+- seis páginas de serviço, uma por bloco, usadas como sitelink na campanha:
+  `instalacao-ar-condicionado.html`, `manutencao-ar-condicionado.html`,
+  `higienizacao-ar-condicionado.html`, `recarga-de-gas-ar-condicionado.html`,
+  `projeto-e-orcamento-ar-condicionado.html`, `contrato-empresas-e-condominios.html`
+- `assets/estilo.css` : o estilo de todas as páginas, num arquivo só
+- `gerar-paginas.py` : opcional, regera as seis páginas de serviço (ver abaixo)
 - `assets/logo-300.png` : logo do cabeçalho, do rodapé e favicon
 - `assets/logo.png` : logo original, usado na imagem de compartilhamento
 - `assets/qrcode-google.svg` : QR code do perfil no Google, na seção de avaliações
 - `assets/fotos/` : as cinco fotos dos cards de serviço
 - `vercel.json` : cache de um ano nas imagens, `index.html` sempre revalidado
+
+## As páginas de serviço
+
+Cada card de serviço na home tem, no rodapé do card, a barra "Ver detalhes do serviço", que leva
+para a página daquele serviço. Como o `vercel.json` está com `cleanUrls`, os endereços publicados
+ficam sem o `.html`, e é assim que eles entram nos sitelinks da campanha:
+
+```
+/instalacao-ar-condicionado
+/manutencao-ar-condicionado
+/higienizacao-ar-condicionado
+/recarga-de-gas-ar-condicionado
+/projeto-e-orcamento-ar-condicionado
+/contrato-empresas-e-condominios
+```
+
+Cada página tem cinco blocos: faixa azul com o título do serviço, os dois botões e a nota do
+Google; foto ao lado de "O que está incluído" com o botão de orçamento; um quadro curto de
+contexto; a faixa de confiança; e o bloco azul de área de atendimento.
+
+O cabeçalho e o rodapé são iguais nas sete páginas, ou seja, estão repetidos nos sete arquivos.
+Se mudar um item do menu, ou mude nos sete na mão, ou rode:
+
+```
+python3 gerar-paginas.py
+```
+
+O script lê o cabeçalho, a faixa de confiança e o rodapé do `index.html` e reescreve as seis
+páginas de serviço com o conteúdo que está dentro dele. O site não precisa do script para
+funcionar, ele é só uma conveniência de manutenção.
 
 ## Quem fala com quem
 
