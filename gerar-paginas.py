@@ -15,7 +15,12 @@ SPRITE  = pedaco('<svg width="0" height="0" style="position:absolute"', '</svg>\
 HEADER  = pedaco('<header class="header">', '</header>')
 TRUST   = pedaco('<section class="trust"', '</section>')
 FOOTER  = pedaco('<footer class="footer">', '</footer>')
-FLOAT   = pedaco('<a class="float-wa"', '</a>')
+def pedaco_flutuante():
+    i = idx.index('class="float-wa"')
+    a = idx.rindex('<a ', 0, i)
+    return idx[a:idx.index('</a>', a) + 4]
+
+FLOAT   = pedaco_flutuante()
 SCRIPT  = pedaco('<script>\n(function(){', '})();\n</script>')
 ESTRELAS = '\n          '.join(['<svg aria-hidden="true"><use href="#ico-estrela"></use></svg>']*5)
 
@@ -24,8 +29,7 @@ def para_home(html):
     return re.sub(r'href="#(?!conteudo)([a-z-]+)"', r'href="index.html#\1"', html)
 
 HEADER, FOOTER, FLOAT = para_home(HEADER), para_home(FOOTER), para_home(FLOAT)
-SCRIPT = SCRIPT.replace("  var form = document.getElementById('formEmpresa');", "  var form = null;")
-SCRIPT = re.sub(r"\n  var form = null;.*?\n  \}\);", "", SCRIPT, flags=re.S)
+# o script do index já é seguro em página sem formulário e sem perguntas frequentes
 
 GTM_HEAD = """<!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -48,6 +52,7 @@ SETA = '<svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" strok
 SERVICOS = [
 {
  "arq": "instalacao-ar-condicionado",
+ "slug": "instalacao",
  "titulo": "Instalação de Ar-Condicionado em Saquarema e Araruama | LM Ar Condicionado",
  "desc": "Instalação de ar-condicionado split, inverter, piso-teto e multi-split em Saquarema, Araruama e municípios vizinhos. Equipe própria. Orçamento pelo WhatsApp.",
  "h1": "Instalação de ar-condicionado em Saquarema e Araruama",
@@ -64,6 +69,7 @@ SERVICOS = [
 },
 {
  "arq": "manutencao-ar-condicionado",
+ "slug": "manutencao",
  "titulo": "Manutenção e Conserto de Ar-Condicionado em Saquarema e Araruama | LM Ar Condicionado",
  "desc": "Conserto de ar-condicionado que não gela, pinga água, faz barulho ou desliga sozinho, em Saquarema, Araruama e municípios vizinhos. Orçamento pelo WhatsApp.",
  "h1": "Manutenção e conserto de ar-condicionado em Saquarema e Araruama",
@@ -80,6 +86,7 @@ SERVICOS = [
 },
 {
  "arq": "higienizacao-ar-condicionado",
+ "slug": "higienizacao",
  "titulo": "Higienização e Limpeza de Ar-Condicionado em Saquarema e Araruama | LM Ar Condicionado",
  "desc": "Higienização de ar-condicionado com desmontagem da evaporadora e bactericida, em Saquarema, Araruama e municípios vizinhos. Orçamento pelo WhatsApp.",
  "h1": "Higienização e limpeza de ar-condicionado em Saquarema e Araruama",
@@ -94,6 +101,7 @@ SERVICOS = [
 },
 {
  "arq": "recarga-de-gas-ar-condicionado",
+ "slug": "gas",
  "titulo": "Recarga de Gás de Ar-Condicionado em Saquarema e Araruama | LM Ar Condicionado",
  "desc": "Carga e recarga de gás, reparo de vazamento e conversão de R22 para R410A em Saquarema, Araruama e municípios vizinhos. Orçamento pelo WhatsApp.",
  "h1": "Recarga de gás de ar-condicionado em Saquarema e Araruama",
@@ -109,6 +117,7 @@ SERVICOS = [
 },
 {
  "arq": "projeto-e-orcamento-ar-condicionado",
+ "slug": "projeto",
  "titulo": "Cálculo de BTUs e Orçamento de Ar-Condicionado em Saquarema e Araruama | LM Ar Condicionado",
  "desc": "Cálculo de BTUs, visita técnica e projeto de climatização para obra em Saquarema, Araruama e municípios vizinhos. Orçamento por foto no WhatsApp.",
  "h1": "Cálculo de BTUs e orçamento de ar-condicionado em Saquarema e Araruama",
@@ -124,6 +133,7 @@ SERVICOS = [
 },
 {
  "arq": "contrato-empresas-e-condominios",
+ "slug": "empresas",
  "titulo": "Contrato de Manutenção de Ar-Condicionado para Empresas e Condomínios | LM Ar Condicionado",
  "desc": "Contrato de manutenção mensal, PMOC e atendimento de urgência para condomínio, prédio, loja, clínica e restaurante em Saquarema e Araruama.",
  "h1": "Contrato de manutenção de ar-condicionado para empresas e condomínios",
@@ -180,8 +190,8 @@ MODELO = '''<!DOCTYPE html>
     <h1>{h1}</h1>
     <p class="hero-sub">{sub}</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="https://wa.me/5522999297477?text={msg}" target="_blank" rel="noopener">{ico_wa} Chamar no WhatsApp</a>
-      <a class="btn btn-light" href="tel:+5522999297477">{ico_tel} Ligar: (22) 99929-7477</a>
+      <a data-cta="contato_whatsapp" data-origem="pagina_topo" data-servico="{slug}" class="btn btn-primary" href="https://wa.me/5522999297477?text={msg}" target="_blank" rel="noopener">{ico_wa} Chamar no WhatsApp</a>
+      <a data-cta="contato_telefone" data-origem="pagina_topo" data-servico="{slug}" class="btn btn-light" href="tel:+5522999297477">{ico_tel} Ligar: (22) 99929-7477</a>
     </div>
     <div class="rating">
       <span class="rating-score">5,0</span>
@@ -219,7 +229,7 @@ MODELO = '''<!DOCTYPE html>
     <p class="eyebrow">Onde atendemos</p>
     <h2>Saquarema, Araruama e municípios vizinhos da Região dos Lagos</h2>
     <p>A base fica no Boqueirão, em Saquarema. Atendemos de segunda a sábado, das 8h às 18h. Ficou na dúvida se atendemos o seu endereço? Chama no WhatsApp que a gente confirma.</p>
-    <a class="btn btn-primary" href="https://wa.me/5522999297477?text={msg}" target="_blank" rel="noopener">{ico_wa} Chamar no WhatsApp</a>
+    <a data-cta="contato_whatsapp" data-origem="pagina_rodape" data-servico="{slug}" class="btn btn-primary" href="https://wa.me/5522999297477?text={msg}" target="_blank" rel="noopener">{ico_wa} Chamar no WhatsApp</a>
   </div>
 </section>
 
@@ -243,13 +253,13 @@ for sv in SERVICOS:
       </div>'''
     if sv.get("cta_box"):
         href, rotulo, _ = sv["cta_box"]
-        cta_box = '<a class="btn btn-primary btn-block" href="{h}">{i} {r}</a>'.format(h=href, i=ICONE_FORM, r=rotulo)
+        cta_box = '<a data-cta="intencao_contrato" data-origem="pagina_caixa" data-servico="{sv}" class="btn btn-primary btn-block" href="{h}">{i} {r}</a>'.format(h=href, i=ICONE_FORM, r=rotulo, sv=sv["slug"])
     else:
-        cta_box = '<a class="btn btn-primary btn-block" href="https://wa.me/5522999297477?text={m}" target="_blank" rel="noopener">{i} Pedir orçamento</a>'.format(m=sv["msg"], i=ICONE_WA)
+        cta_box = '<a data-cta="contato_whatsapp" data-origem="pagina_caixa" data-servico="{sv}" class="btn btn-primary btn-block" href="https://wa.me/5522999297477?text={m}" target="_blank" rel="noopener">{i} Pedir orçamento</a>'.format(m=sv["msg"], i=ICONE_WA, sv=sv["slug"])
     itens = "\n".join('          <li>{}</li>'.format(i) for i in sv["inclui"])
     html = MODELO.format(titulo=sv["titulo"], desc=sv["desc"], arq=sv["arq"], h1=sv["h1"], sub=sv["sub"],
                          msg=sv["msg"], itens=itens, quando_t=sv["quando_t"], quando=sv["quando"],
-                         coluna_foto=coluna, cta_box=cta_box, sprite=SPRITE, header=HEADER, trust=TRUST, footer=FOOTER,
+                         coluna_foto=coluna, cta_box=cta_box, slug=sv["slug"], sprite=SPRITE, header=HEADER, trust=TRUST, footer=FOOTER,
                          float=FLOAT, script=SCRIPT, gtm_head=GTM_HEAD, gtm_body=GTM_BODY, estrelas=ESTRELAS, ico_wa=ICONE_WA, ico_tel=ICONE_TEL, seta=SETA)
     caminho = os.path.join(BASE, sv["arq"] + ".html")
     io.open(caminho, "w", encoding="utf-8").write(html)
