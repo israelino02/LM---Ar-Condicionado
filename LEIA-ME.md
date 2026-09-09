@@ -1,22 +1,30 @@
 # Site LM Ar Condicionado
 
-Site institucional de página única, HTML autocontido. Objetivo único: levar a pessoa para o WhatsApp.
-O único formulário do site é o de proposta de contrato, na seção de condomínios e empresas, e ele
-não envia nada para servidor nenhum: monta a mensagem e abre o WhatsApp já preenchido.
+Site institucional de página única, HTML autocontido, sem build e sem dependência externa.
+Objetivo único: levar a pessoa para o WhatsApp.
+
+No ar em https://lm-ar-condicionado.vercel.app
+Repositório: https://github.com/israelino02/LM---Ar-Condicionado (a Vercel publica sozinha a cada push na `main`)
 
 ## Arquivos
 
-- `index.html` : o site inteiro (HTML, CSS e JS no mesmo arquivo, sem dependência externa)
+- `index.html` : o site inteiro, com todo o CSS e o JS dentro
 - `assets/logo-300.png` : logo do cabeçalho, do rodapé e favicon
-- `assets/logo.png` : logo original, usado na imagem de compartilhamento (Open Graph)
-- `assets/fotos/` : as fotos usadas no site
+- `assets/logo.png` : logo original, usado na imagem de compartilhamento
+- `assets/qrcode-google.svg` : QR code do perfil no Google, na seção de avaliações
+- `assets/fotos/` : as cinco fotos dos cards de serviço
+- `vercel.json` : cache de um ano nas imagens, `index.html` sempre revalidado
 
-## De onde veio cada foto
+## Quem fala com quem
+
+O site inteiro fala com o dono da casa. As duas únicas partes que falam com empresa são o card
+"Empresas e condomínios" e a seção de contrato com o formulário. Se for escrever texto novo,
+mantenha essa divisão.
+
+## Fotos
 
 | Onde aparece | Arquivo | Origem |
 |---|---|---|
-| Topo, foto principal | `hero-carro-lm.jpg` | foto real do carro da LM em Saquarema |
-| Topo, foto menor | `hero-equipe-lm.jpg` | foto real do técnico com aparelhos novos |
 | Instalação | `servico-instalacao.jpg` | banco de imagens enviado pelo cliente |
 | Manutenção e conserto | `servico-manutencao.jpg` | banco de imagens enviado pelo cliente |
 | Higienização e limpeza | `servico-higienizacao.jpg` | banco de imagens enviado pelo cliente |
@@ -24,25 +32,41 @@ não envia nada para servidor nenhum: monta a mensagem e abre o WhatsApp já pre
 | Projeto e orçamento | `servico-projeto.jpg` | foto real da caixa de ferramentas da LM |
 | Empresas e condomínios | sem foto | card azul-escuro com ícone, para destacar o serviço |
 
-Para trocar qualquer uma, salve a nova em `assets/fotos/` com o mesmo nome. Use JPG de no máximo
-1000px no maior lado, para o site continuar leve no 4G. Se a foto for vertical, ajuste o
-`object-position` daquela imagem no HTML para escolher a parte que aparece no recorte.
+O topo não tem imagem nenhuma, é só tipografia sobre o azul-escuro.
 
-## Fotos que ainda valem a pena pedir ao cliente
+Fotos que ainda valem a pena pedir ao cliente: serviço executado em condomínio, prédio ou empresa
+(hoje o único card sem foto), equipe uniformizada em serviço, e um antes e depois de higienização.
 
-1. Serviço executado em condomínio, prédio ou empresa. É o card de maior valor e hoje é o único
-   sem foto, está com um card azul-escuro no lugar.
-2. Equipe uniformizada em serviço, de frente, para o topo do site.
-3. Antes e depois de uma higienização.
+## Avaliações e QR code
 
-## Antes de publicar, confirmar com o cliente
+As seis avaliações são reais, copiadas do perfil da empresa no Google, na íntegra. Se for trocar
+alguma, copie do perfil, sem editar o texto.
 
-1. **Domínio**: o `<link rel="canonical">`, as tags Open Graph e o JSON-LD estão com
-   `https://www.lmarcondicionado.com.br/` como exemplo. Troque pelo domínio real.
-2. **Coordenadas do mapa**: o JSON-LD usa latitude e longitude aproximadas de Saquarema. Pegue as
-   exatas no Perfil da Empresa no Google e substitua.
-3. **Nome, endereço e telefone** estão escritos exatamente como no cadastro do Google. Se mudar lá,
-   mude aqui também, caractere por caractere.
+O QR code aponta para https://www.google.com/maps?cid=14544561927351388928 , que é o perfil da LM
+no Google. Quem escaneia cai na página onde dá para ler as avaliações e escrever a sua.
+
+Para gerar um QR novo, caso o link mude:
+
+```
+pip3 install segno
+python3 -c "import segno; segno.make('COLE_O_LINK_AQUI', error='m').save('assets/qrcode-google.svg', scale=10, border=2, dark='#0B2439', light='#FFFFFF')"
+```
+
+Se o Leonardo quiser o link curto que abre direto a janela de avaliação, ele pega no painel do
+Perfil da Empresa, em "Peça avaliações", e é só trocar nos dois lugares (o botão e o QR).
+
+## Dados do Google que estão no site
+
+- Nome, endereço e telefone escritos exatamente como no cadastro
+- Coordenadas do JSON-LD: -22.9309573, -42.5307135, tiradas do próprio perfil
+- Horário: segunda a sábado, das 8h às 18h
+
+Se mudar qualquer um deles no Google, mude aqui também, caractere por caractere.
+
+## Se entrar um domínio próprio
+
+Trocar `https://lm-ar-condicionado.vercel.app` em três lugares do `index.html`: o `canonical`, as
+tags `og:` e o JSON-LD.
 
 ## Regras que o site segue
 
@@ -52,8 +76,3 @@ Para trocar qualquer uma, salve a nova em `assets/fotos/` com o mesmo nome. Use 
 - Sobre marcas, só "trabalhamos com Gree, Midea, Hitachi e Agratto". Nunca "autorizada" nem
   "credenciada".
 - Serviços que a empresa não faz não aparecem em lugar nenhum.
-
-## Como publicar
-
-É um site estático. Suba a pasta inteira (`index.html` mais `assets`) em qualquer hospedagem, ou
-arraste a pasta para Netlify, Vercel ou Cloudflare Pages. Não precisa de banco de dados nem servidor.

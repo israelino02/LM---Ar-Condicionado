@@ -7,7 +7,7 @@
 <meta name="description" content="Instalação, manutenção e higienização de ar-condicionado em Saquarema e Araruama. Equipe própria com mais de 7 anos de rua. Orçamento pelo WhatsApp com a LM Ar Condicionado.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#071A2B">
-<link rel="canonical" href="https://www.lmarcondicionado.com.br/">
+<link rel="canonical" href="https://lm-ar-condicionado.vercel.app/">
 <link rel="icon" href="assets/logo-300.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/logo-300.png">
 
@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="LM Ar Condicionado">
 <meta property="og:title" content="Ar-Condicionado em Saquarema e Araruama | LM Ar Condicionado">
 <meta property="og:description" content="Instalação, manutenção e higienização de ar-condicionado em Saquarema, Araruama e municípios vizinhos. Orçamento pelo WhatsApp.">
-<meta property="og:image" content="assets/logo.png">
+<meta property="og:image" content="https://lm-ar-condicionado.vercel.app/assets/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <style>
@@ -65,6 +65,15 @@ ul{margin:0 0 1em;padding:0;list-style:none}
 .wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 18px}
 .section{padding:46px 0}
 .section--soft{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section--blue{background:#E4EEF8;border-top:1px solid #CFE0F0;border-bottom:1px solid #CFE0F0}
+.section--navy{background:var(--navy-800)}
+.section--navy h2{color:#fff}
+.section--navy p{color:#B7CDE0}
+.section--navy .eyebrow{color:var(--accent-light)}
+.section--navy .info-line svg{stroke:var(--accent-light)}
+.section--navy .info-line strong{color:#fff}
+.section--navy .info-line a{color:#D9E8F5}
+.section--navy .map{border-color:rgba(255,255,255,.2)}
 .eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-dark);margin:0 0 .7em}
 .lead{font-size:.98rem;color:var(--muted);max-width:64ch}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
@@ -175,13 +184,18 @@ main{padding-top:var(--header-h)}
 .step p{font-size:.78rem;line-height:1.45;margin:0;color:var(--muted)}
 
 /* ---------- avaliações ---------- */
-.reviews{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px;align-items:start}
+.reviews{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
 .review{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:15px 14px}
-.review:nth-child(3){grid-column:1 / -1}
 .review .stars{margin-bottom:9px}
 .review blockquote{margin:0 0 11px;font-size:.82rem;line-height:1.5;color:var(--ink)}
 .review cite{font-style:normal;font-weight:700;color:var(--ink);font-size:.82rem;display:block}
 .review .src{font-size:.74rem;color:var(--muted)}
+.google-cta{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px 18px;display:grid;grid-template-columns:1fr;gap:20px;align-items:center}
+.google-cta h3{font-size:1.05rem;margin-bottom:.4em}
+.google-cta p{font-size:.88rem;color:var(--muted);margin-bottom:16px}
+.qr{margin:0;text-align:center}
+.qr img{width:148px;height:148px;margin:0 auto;border:1px solid var(--line);border-radius:8px;padding:7px;background:#fff}
+.qr figcaption{font-size:.76rem;color:var(--muted);margin-top:9px;line-height:1.3}
 
 /* ---------- onde atendemos ---------- */
 .area-grid{display:grid;grid-template-columns:1fr;gap:22px;margin-top:20px}
@@ -241,7 +255,8 @@ main{padding-top:var(--header-h)}
   .step p{font-size:.9rem}
   .reviews{grid-template-columns:repeat(3,1fr);gap:18px}
   .review{padding:22px 20px}
-  .review:nth-child(3){grid-column:auto}
+  .google-cta{grid-template-columns:1fr auto;gap:36px;padding:26px 24px;margin-top:18px}
+  .qr img{width:172px;height:172px}
   .review blockquote{font-size:.95rem}
   .review cite{font-size:.92rem}
   .faq{gap:14px;margin-top:30px}
@@ -295,6 +310,10 @@ main{padding-top:var(--header-h)}
 
 <a class="sr-only" href="#conteudo">Ir para o conteúdo</a>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ico-estrela" viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></symbol>
+</svg>
+
 <!-- ============ CABEÇALHO FIXO ============ -->
 <header class="header">
   <div class="wrap header-bar">
@@ -345,7 +364,7 @@ main{padding-top:var(--header-h)}
     </div>
 
     <div class="hero-side">
-      <p class="hero-sub">Empresa de climatização com equipe própria, mais de 7 anos atendendo casa, comércio, condomínio e empresa em Saquarema, Araruama e municípios vizinhos da Região dos Lagos.</p>
+      <p class="hero-sub">A gente cuida do ar-condicionado da sua casa: instala, limpa, conserta e faz a carga de gás. Equipe própria, mais de 7 anos em Saquarema, Araruama e municípios vizinhos da Região dos Lagos.</p>
 
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://wa.me/5522999297477?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20um%20or%C3%A7amento%20de%20ar-condicionado." target="_blank" rel="noopener">
@@ -361,11 +380,11 @@ main{padding-top:var(--header-h)}
       <div class="rating">
         <span class="rating-score">5,0</span>
         <span class="stars" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
         </span>
         <span class="rating-text"><strong>161 avaliações</strong><br>nota 5,0 no Google</span>
       </div>
@@ -397,7 +416,7 @@ main{padding-top:var(--header-h)}
 </section>
 
 <!-- ============ COMO FUNCIONA ============ -->
-<section class="section section--soft" id="como-funciona">
+<section class="section section--blue" id="como-funciona">
   <div class="wrap">
     <p class="eyebrow">Como funciona</p>
     <h2>Do primeiro contato ao aparelho ligado, em quatro passos</h2>
@@ -405,7 +424,7 @@ main{padding-top:var(--header-h)}
       <div class="step">
         <span class="step-num">1</span>
         <h3>Você chama no WhatsApp</h3>
-        <p>Manda uma foto do ambiente e do aparelho, se já tiver um instalado.</p>
+        <p>Manda uma foto do cômodo e do aparelho, do próprio celular.</p>
       </div>
       <div class="step">
         <span class="step-num">2</span>
@@ -431,7 +450,7 @@ main{padding-top:var(--header-h)}
   <div class="wrap">
     <p class="eyebrow">O que a gente faz</p>
     <h2>Serviços de ar-condicionado em Saquarema e Araruama</h2>
-    <p class="lead">Casa, comércio, condomínio e empresa. O aparelho é testado na sua frente antes da equipe ir embora.</p>
+    <p class="lead">Do quarto que parou de gelar ao aparelho que começou a pingar na parede. A equipe chega na hora marcada, faz o serviço e testa o aparelho na sua frente antes de ir embora.</p>
 
     <div class="cards">
 
@@ -439,11 +458,11 @@ main{padding-top:var(--header-h)}
         <figure class="card-photo"><img src="assets/fotos/servico-instalacao.jpg" width="900" height="600" alt="Técnico instalando a evaporadora de um ar-condicionado split na parede" loading="lazy"></figure>
         <div class="card-body">
           <h2>Instalação de ar-condicionado</h2>
-          <p>Split, inverter, piso-teto, cassete e multi-split.</p>
+          <p>Aparelho novo no quarto, na sala ou na casa inteira.</p>
           <ul class="list">
-            <li>Vácuo feito antes de liberar o gás</li>
-            <li>Tubulação durante a obra, antes do acabamento</li>
-            <li>Aparelhos novos, instalados pela mesma equipe</li>
+            <li>Dreno com o caimento certo, para não pingar na parede</li>
+            <li>Tubulação embutida na obra, antes do acabamento</li>
+            <li>Se você ainda não comprou, a gente vende e instala</li>
           </ul>
           <a class="btn btn-quote btn-sm btn-block" href="https://wa.me/5522999297477?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20instala%C3%A7%C3%A3o%20de%20ar-condicionado." target="_blank" rel="noopener">Pedir orçamento</a>
         </div>
@@ -453,11 +472,11 @@ main{padding-top:var(--header-h)}
         <figure class="card-photo"><img src="assets/fotos/servico-manutencao.jpg" width="900" height="628" alt="Técnico medindo a parte elétrica de uma condensadora de ar-condicionado durante a manutenção" loading="lazy"></figure>
         <div class="card-body">
           <h2>Manutenção e conserto</h2>
-          <p>Não gela, pinga água, faz barulho ou desliga sozinho.</p>
+          <p>Parou de gelar, pinga na parede, faz barulho ou desliga sozinho.</p>
           <ul class="list">
-            <li>Preventiva programada e corretiva</li>
+            <li>A gente abre, testa e mostra o que está acontecendo</li>
             <li>Troca de placa, compressor, capacitor e controle</li>
-            <li>Aparelho testado na sua frente</li>
+            <li>Revisão antes do verão, para não parar no calor</li>
           </ul>
           <a class="btn btn-quote btn-sm btn-block" href="https://wa.me/5522999297477?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20manuten%C3%A7%C3%A3o%20de%20ar-condicionado." target="_blank" rel="noopener">Pedir orçamento</a>
         </div>
@@ -467,10 +486,10 @@ main{padding-top:var(--header-h)}
         <figure class="card-photo"><img src="assets/fotos/servico-higienizacao.jpg" width="900" height="600" alt="Técnico higienizando a evaporadora de um ar-condicionado split com lavadora e capa de proteção" loading="lazy"></figure>
         <div class="card-body">
           <h2>Higienização e limpeza</h2>
-          <p>Limpeza completa, não é só trocar o filtro.</p>
+          <p>Aquele cheiro que sai quando liga é sujeira acumulada lá dentro.</p>
           <ul class="list">
-            <li>Desmontagem da evaporadora</li>
-            <li>Limpeza da condensadora</li>
+            <li>Evaporadora desmontada e lavada por dentro</li>
+            <li>Limpeza da condensadora, a parte que fica do lado de fora</li>
             <li>Aplicação de bactericida</li>
           </ul>
           <a class="btn btn-quote btn-sm btn-block" href="https://wa.me/5522999297477?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20higieniza%C3%A7%C3%A3o%20de%20ar-condicionado." target="_blank" rel="noopener">Pedir orçamento</a>
@@ -481,11 +500,11 @@ main{padding-top:var(--header-h)}
         <figure class="card-photo"><img src="assets/fotos/servico-gas.jpg" width="900" height="487" alt="Manifold de manômetros conectado à condensadora para carga de gás do ar-condicionado" loading="lazy"></figure>
         <div class="card-body">
           <h2>Recarga de gás e vazamento</h2>
-          <p>Antes de completar o gás, a gente acha o vazamento.</p>
+          <p>Está limpo e mesmo assim gela pouco? Pode ser falta de gás.</p>
           <ul class="list">
-            <li>Carga e recarga de gás</li>
+            <li>A gente acha o vazamento antes de completar o gás</li>
             <li>Teste de estanqueidade e vácuo</li>
-            <li>Conversão de R22 para R410A</li>
+            <li>Aparelho antigo de R22 convertido para R410A</li>
           </ul>
           <a class="btn btn-quote btn-sm btn-block" href="https://wa.me/5522999297477?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20carga%20de%20g%C3%A1s%20do%20ar-condicionado." target="_blank" rel="noopener">Pedir orçamento</a>
         </div>
@@ -495,11 +514,11 @@ main{padding-top:var(--header-h)}
         <figure class="card-photo"><img src="assets/fotos/servico-projeto.jpg" width="506" height="900" style="object-position:center 32%" alt="Ferramentas da LM Ar Condicionado prontas para a visita técnica, com manifold, flangeador e parafusadeira" loading="lazy"></figure>
         <div class="card-body">
           <h2>Projeto e orçamento</h2>
-          <p>O BTU certo para o ambiente, antes de você comprar.</p>
+          <p>Antes de comprar, saiba quantos BTUs o seu cômodo precisa.</p>
           <ul class="list">
-            <li>Cálculo de BTUs do ambiente</li>
-            <li>Orçamento por foto no WhatsApp</li>
-            <li>Visita técnica e projeto para obra</li>
+            <li>Cálculo de BTUs pelo tamanho do cômodo e pelo sol que bate</li>
+            <li>Manda a foto no WhatsApp que a gente orça</li>
+            <li>Visita técnica quando precisa olhar de perto</li>
           </ul>
           <a class="btn btn-quote btn-sm btn-block" href="https://wa.me/5522999297477?text=Ol%C3%A1!%20Quero%20uma%20visita%20t%C3%A9cnica%20para%20or%C3%A7amento%20de%20ar-condicionado." target="_blank" rel="noopener">Pedir orçamento</a>
         </div>
@@ -517,7 +536,7 @@ main{padding-top:var(--header-h)}
             <li>Urgência para cliente com contrato</li>
             <li>Ar central e VRF</li>
           </ul>
-          <a class="btn btn-primary btn-sm btn-block" href="https://wa.me/5522999297477?text=Ol%C3%A1!%20Quero%20falar%20sobre%20contrato%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20empresa." target="_blank" rel="noopener">Pedir orçamento</a>
+          <a class="btn btn-primary btn-sm btn-block" href="#empresas">Pedir orçamento</a>
         </div>
       </article>
 
@@ -590,53 +609,102 @@ main{padding-top:var(--header-h)}
   <div class="wrap">
     <p class="eyebrow">Avaliações</p>
     <h2>Quem já chamou a LM Ar Condicionado</h2>
-    <p class="lead">São 161 avaliações no Google, com nota 5,0. Abaixo, três delas na íntegra.</p>
+    <p class="lead">São 161 avaliações no Google, com nota 5,0. Abaixo, seis delas na íntegra.</p>
 
     <div class="reviews">
       <article class="review">
         <span class="stars" aria-label="Cinco estrelas">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
         </span>
         <blockquote>"Instalação de um Split de 24.000 Btus hoje. Pontual, serviço rápido e com capricho, atendimento top. Profissionais qualificados e atenciosos."</blockquote>
         <cite>Marcello Mirandella</cite>
         <span class="src">Avaliação no Google</span>
       </article>
-
       <article class="review">
         <span class="stars" aria-label="Cinco estrelas">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+        </span>
+        <blockquote>"O Leonardo é sua equipe fazem um trabalho de excelência. Educação, competência, pontualidade e deixam o local do serviço super limpo."</blockquote>
+        <cite>Zeni Gomes da Costa</cite>
+        <span class="src">Avaliação no Google</span>
+      </article>
+      <article class="review">
+        <span class="stars" aria-label="Cinco estrelas">
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
         </span>
         <blockquote>"Ótimo trabalho! Todos foram muito educados e solícitos. Já indiquei para um amigo, que também elogiou bastante o atendimento e a qualidade do serviço."</blockquote>
         <cite>Michelle Angelo</cite>
         <span class="src">Avaliação no Google</span>
       </article>
-
       <article class="review">
         <span class="stars" aria-label="Cinco estrelas">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9L12 17.8 5.8 21l1.2-6.9-5-4.9 6.9-1z"/></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+        </span>
+        <blockquote>"Excelente, presteza no pré-atendimento, compromisso e pontualidade na execução da instalação. Recomendo."</blockquote>
+        <cite>Sergio Nascimento</cite>
+        <span class="src">Avaliação no Google</span>
+      </article>
+      <article class="review">
+        <span class="stars" aria-label="Cinco estrelas">
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
         </span>
         <blockquote>"Ficamos muito satisfeitos com o trabalho, são excelentes profissionais e nos dão todo suporte necessário para deixar o ar condicionado funcionando da melhor forma!"</blockquote>
         <cite>Auto Peças Vieira</cite>
         <span class="src">Avaliação no Google</span>
       </article>
+      <article class="review">
+        <span class="stars" aria-label="Cinco estrelas">
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+          <svg aria-hidden="true"><use href="#ico-estrela"></use></svg>
+        </span>
+        <blockquote>"Excelente empresa! Profissionais qualificados e serviço de primeira linha. Recomendo."</blockquote>
+        <cite>Rafael</cite>
+        <span class="src">Avaliação no Google</span>
+      </article>
+    </div>
+
+    <div class="google-cta">
+      <div>
+        <h3>Já é cliente da LM?</h3>
+        <p>Sua avaliação ajuda o vizinho que está procurando alguém de confiança. Aponte a câmera do celular para o código ou toque no botão: abre o perfil da LM no Google, onde dá para ler o que os outros clientes falaram e deixar a sua avaliação.</p>
+        <a class="btn btn-primary" href="https://www.google.com/maps?cid=14544561927351388928" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3.1-5.8 3.1 1.1-6.5L2.6 9.8l6.5-.9z"/></svg>
+          Ver e avaliar no Google
+        </a>
+      </div>
+      <figure class="qr">
+        <img src="assets/qrcode-google.svg" width="370" height="370" alt="Código QR que abre o perfil da LM Ar Condicionado no Google, para ler e escrever avaliações" loading="lazy">
+        <figcaption>Aponte a câmera do celular</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
 <!-- ============ ONDE ATENDEMOS ============ -->
-<section class="section" id="area">
+<section class="section section--navy" id="area">
   <div class="wrap">
     <div class="area-grid">
       <div>
@@ -775,9 +843,9 @@ main{padding-top:var(--header-h)}
   "@type": "HVACBusiness",
   "name": "LM Ar Condicionado",
   "description": "Instalação, manutenção e higienização de ar-condicionado em Saquarema, Araruama e municípios vizinhos da Região dos Lagos.",
-  "url": "https://www.lmarcondicionado.com.br/",
-  "image": "https://www.lmarcondicionado.com.br/assets/logo.png",
-  "logo": "https://www.lmarcondicionado.com.br/assets/logo.png",
+  "url": "https://lm-ar-condicionado.vercel.app/",
+  "image": "https://lm-ar-condicionado.vercel.app/assets/logo.png",
+  "logo": "https://lm-ar-condicionado.vercel.app/assets/logo.png",
   "telephone": "+5522999297477",
   "sameAs": ["https://www.instagram.com/lm_ar_condicionad0/"],
   "address": {
@@ -788,7 +856,7 @@ main{padding-top:var(--header-h)}
     "postalCode": "28990-536",
     "addressCountry": "BR"
   },
-  "geo": { "@type": "GeoCoordinates", "latitude": -22.9204, "longitude": -42.5091 },
+  "geo": { "@type": "GeoCoordinates", "latitude": -22.9309573, "longitude": -42.5307135 },
   "areaServed": [
     { "@type": "City", "name": "Saquarema" },
     { "@type": "City", "name": "Araruama" }
