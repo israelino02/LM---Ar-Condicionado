@@ -42,6 +42,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 ICONE_WA = '<svg viewBox="0 0 32 32" width="19" height="19" fill="#fff" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.8 6.4L3 29l6.8-1.8c1.9 1 4 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.1 1.1-3.9-.3-.4a10.5 10.5 0 1 1 9.1 4.9zm5.9-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1a8.6 8.6 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.9 5.1 2.2.9 3 1 4.1.8.7-.1 2-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.3-.6-.4z"/></svg>'
 ICONE_TEL = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>'
+ICONE_FORM = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3.5h6v3H9zM15 5h3.5v15.5h-13V5H9"/><path d="M9 11.5h6M9 15.5h4"/></svg>'
 SETA = '<svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>'
 
 SERVICOS = [
@@ -136,7 +137,7 @@ SERVICOS = [
  "quando_t": "Como a proposta é montada",
  "quando": "A gente marca uma visita, levanta quantos aparelhos existem e em que estado eles estão, e monta a proposta em cima disso. Cada prédio tem uma realidade diferente.",
  "msg": "Ol%C3%A1!%20Quero%20falar%20sobre%20contrato%20de%20manuten%C3%A7%C3%A3o%20para%20minha%20empresa.",
- "form": True,
+ "cta_box": ("index.html#empresas", "Pedir orçamento", "form"),
 },
 ]
 
@@ -201,7 +202,7 @@ MODELO = '''<!DOCTYPE html>
         <ul class="list">
 {itens}
         </ul>
-        <a class="btn btn-primary btn-block" href="https://wa.me/5522999297477?text={msg}" target="_blank" rel="noopener">{ico_wa} Pedir orçamento</a>
+        {cta_box}
       </div>
       <div class="page-box">
         <h2>{quando_t}</h2>
@@ -240,10 +241,15 @@ for sv in SERVICOS:
         <p style="font-size:.92rem;color:#B7CDE0">Preencha o formulário na página inicial com o nome, o condomínio ou a empresa, o telefone e o tipo de imóvel, que o WhatsApp abre com tudo escrito.</p>
         <a class="btn btn-light btn-block" href="index.html#empresas">Abrir o formulário</a>
       </div>'''
+    if sv.get("cta_box"):
+        href, rotulo, _ = sv["cta_box"]
+        cta_box = '<a class="btn btn-primary btn-block" href="{h}">{i} {r}</a>'.format(h=href, i=ICONE_FORM, r=rotulo)
+    else:
+        cta_box = '<a class="btn btn-primary btn-block" href="https://wa.me/5522999297477?text={m}" target="_blank" rel="noopener">{i} Pedir orçamento</a>'.format(m=sv["msg"], i=ICONE_WA)
     itens = "\n".join('          <li>{}</li>'.format(i) for i in sv["inclui"])
     html = MODELO.format(titulo=sv["titulo"], desc=sv["desc"], arq=sv["arq"], h1=sv["h1"], sub=sv["sub"],
                          msg=sv["msg"], itens=itens, quando_t=sv["quando_t"], quando=sv["quando"],
-                         coluna_foto=coluna, sprite=SPRITE, header=HEADER, trust=TRUST, footer=FOOTER,
+                         coluna_foto=coluna, cta_box=cta_box, sprite=SPRITE, header=HEADER, trust=TRUST, footer=FOOTER,
                          float=FLOAT, script=SCRIPT, gtm_head=GTM_HEAD, gtm_body=GTM_BODY, estrelas=ESTRELAS, ico_wa=ICONE_WA, ico_tel=ICONE_TEL, seta=SETA)
     caminho = os.path.join(BASE, sv["arq"] + ".html")
     io.open(caminho, "w", encoding="utf-8").write(html)
