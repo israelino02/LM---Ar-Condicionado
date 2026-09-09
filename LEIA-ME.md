@@ -51,6 +51,18 @@ O script lê o cabeçalho, a faixa de confiança e o rodapé do `index.html` e r
 páginas de serviço com o conteúdo que está dentro dele. O site não precisa do script para
 funcionar, ele é só uma conveniência de manutenção.
 
+## Medição
+
+O Google Tag Manager está instalado nas sete páginas, container `GTM-K4WRWJ3T`: o script no
+`<head>`, logo depois da tag de viewport, e o `noscript` logo depois do `<body>`. O script
+`gerar-paginas.py` já coloca as duas tags nas páginas que ele gera.
+
+Daqui para frente, GA4, Google Ads e Clarity entram por dentro do GTM, sem precisar mexer no
+código do site. O que ainda falta no código para a medição ficar completa: um `data-origem` em
+cada botão de contato, para separar topo, cards, rodapé e botão flutuante, e um `dataLayer.push`
+dentro da função do formulário, que hoje envia por JavaScript e por isso não dispara o gatilho
+de formulário do GTM.
+
 ## Quem fala com quem
 
 O site inteiro fala com o dono da casa. As duas únicas partes que falam com empresa são o card

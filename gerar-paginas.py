@@ -27,6 +27,19 @@ HEADER, FOOTER, FLOAT = para_home(HEADER), para_home(FOOTER), para_home(FLOAT)
 SCRIPT = SCRIPT.replace("  var form = document.getElementById('formEmpresa');", "  var form = null;")
 SCRIPT = re.sub(r"\n  var form = null;.*?\n  \}\);", "", SCRIPT, flags=re.S)
 
+GTM_HEAD = """<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4WRWJ3T');</script>
+<!-- End Google Tag Manager -->"""
+
+GTM_BODY = """<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4WRWJ3T"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->"""
+
 ICONE_WA = '<svg viewBox="0 0 32 32" width="19" height="19" fill="#fff" aria-hidden="true"><path d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.8 6.4L3 29l6.8-1.8c1.9 1 4 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.9-.5-5.5-1.5l-.4-.2-4 1.1 1.1-3.9-.3-.4a10.5 10.5 0 1 1 9.1 4.9zm5.9-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2s-.8 1-1 1.2c-.2.2-.4.2-.7.1a8.6 8.6 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.6s-.7-1.7-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.7 5.9 5.1 2.2.9 3 1 4.1.8.7-.1 2-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.3-.6-.4z"/></svg>'
 ICONE_TEL = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>'
 SETA = '<svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>'
@@ -132,6 +145,9 @@ MODELO = '''<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{gtm_head}
+
 <title>{titulo}</title>
 <meta name="description" content="{desc}">
 <meta name="robots" content="index, follow">
@@ -148,6 +164,7 @@ MODELO = '''<!DOCTYPE html>
 <link rel="stylesheet" href="assets/estilo.css">
 </head>
 <body>
+{gtm_body}
 
 <a class="sr-only" href="#conteudo">Ir para o conteúdo</a>
 
@@ -227,7 +244,7 @@ for sv in SERVICOS:
     html = MODELO.format(titulo=sv["titulo"], desc=sv["desc"], arq=sv["arq"], h1=sv["h1"], sub=sv["sub"],
                          msg=sv["msg"], itens=itens, quando_t=sv["quando_t"], quando=sv["quando"],
                          coluna_foto=coluna, sprite=SPRITE, header=HEADER, trust=TRUST, footer=FOOTER,
-                         float=FLOAT, script=SCRIPT, estrelas=ESTRELAS, ico_wa=ICONE_WA, ico_tel=ICONE_TEL, seta=SETA)
+                         float=FLOAT, script=SCRIPT, gtm_head=GTM_HEAD, gtm_body=GTM_BODY, estrelas=ESTRELAS, ico_wa=ICONE_WA, ico_tel=ICONE_TEL, seta=SETA)
     caminho = os.path.join(BASE, sv["arq"] + ".html")
     io.open(caminho, "w", encoding="utf-8").write(html)
     print("gerada:", sv["arq"] + ".html", len(html), "bytes")
