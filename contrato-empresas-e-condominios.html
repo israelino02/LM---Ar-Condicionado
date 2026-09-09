@@ -205,8 +205,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 (function(){
   function medir(dados){
+    // limpa os parâmetros do evento anterior, senão o dataLayer os carrega para o próximo
+    var evento = { event: null, origem: undefined, servico: undefined, tipo_imovel: undefined, pergunta: undefined };
+    for (var chave in dados) {
+      if (Object.prototype.hasOwnProperty.call(dados, chave)) evento[chave] = dados[chave];
+    }
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(dados);
+    window.dataLayer.push(evento);
   }
 
   // menu do celular
@@ -233,8 +238,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (!el) return;
     medir({
       event: el.getAttribute('data-cta'),
-      origem: el.getAttribute('data-origem') || '',
-      servico: el.getAttribute('data-servico') || ''
+      origem: el.getAttribute('data-origem') || undefined,
+      servico: el.getAttribute('data-servico') || undefined
     });
   });
 
